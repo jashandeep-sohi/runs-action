@@ -59,7 +59,7 @@ inputs:
       `post-command`. Technically the last argument to `post-command`.
     required: true
     default: ""
-  pre-if:
+  post-if:
     description: "Whether to trigger the post-hook."
     required: true
     default: "false"
