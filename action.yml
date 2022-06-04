@@ -19,10 +19,6 @@ inputs:
       `pre-command`. Technically the last argument to `pre-command`.
     required: false
     default: ""
-  pre-if:
-    description: "Whether to trigger the pre-hook."
-    required: true
-    default: "false"
 
   main-command:
     description: "Name or path to the main executable."
@@ -59,10 +55,6 @@ inputs:
       `post-command`. Technically the last argument to `post-command`.
     required: true
     default: ""
-  post-if:
-    description: "Whether to trigger the post-hook."
-    required: true
-    default: "false"
 
 outputs:
   return-code:
@@ -70,7 +62,7 @@ outputs:
 runs:
   using: "node16"
   pre: "dist/pre/index.js"
-  pre-if: "fromJSON(env.INPUT_PRE_IF || 'false')"
+  pre-if: "fromJSON(env.PRE_IF || 'false')"
   main: "dist/main/index.js"
   post: "dist/post/index.js"
-  post-if: "fromJSON(env.INPUT_POST_IF || 'false')"
+  post-if: "fromJSON(env.POST_IF || 'false')"

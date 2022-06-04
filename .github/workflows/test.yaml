@@ -1,0 +1,60 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test pre & post
+        env:
+          PRE_IF: "true"
+          POST_IF: "true"
+        with:
+          pre-run: echo Hello from pre run
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test pre only
+        env:
+          PRE_IF: "true"
+          POST_IF: "false"
+        with:
+          pre-run: echo Hello from pre run
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test post only
+        env:
+          PRE_IF: "false"
+          POST_IF: "true"
+        with:
+          pre-run: echo Hello from pre run
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test main only
+        env:
+          PRE_IF: "false"
+          POST_IF: "false"
+        with:
+          pre-run: echo Hello from pre run
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test default pre-if & post-if
+        with:
+          pre-run: echo Hello from pre run
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
