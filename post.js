@@ -11,8 +11,6 @@ try {
     [...postArgs, ...[postRun].filter(x => x)],
     {
       listeners: {
-        stdout: data => process.stdout.write(data),
-        stderr: data => process.stderr.write(data),
         debug: data => core.debug(data),
       },
     }

@@ -3237,8 +3237,6 @@ try {
     [...preArgs, ...[preRun].filter(x => x)],
     {
       listeners: {
-        stdout: data => process.stdout.write(data),
-        stderr: data => process.stderr.write(data),
         debug: data => _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(data),
       },
     }
