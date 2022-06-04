@@ -1,0 +1,76 @@
+name: "Runs Action"
+description: "Run a command at pre, main or post stages of a workflow job."
+author: "Jashandeep Sohi"
+inputs:
+  pre-command:
+    description: "Name or path to an executable to be run at the start of a job."
+    required: true
+    default: "sh"
+  pre-args:
+    description: "Arguments for `pre-command`. One per line."
+    required: true
+    default: |-
+      -e
+      -x
+      -c
+  pre-run:
+    description: >
+      Can be used to inline a shell script with the default `pre-args` for
+      `pre-command`. Technically the last argument to `pre-command`.
+    required: false
+    default: ""
+  pre-if:
+    description: "Whether to trigger the pre-hook."
+    required: true
+    default: "false"
+
+  main-command:
+    description: "Name or path to the main executable."
+    required: true
+    default: "sh"
+  main-args:
+    description: "Arguments for `main-command`. One per line."
+    required: true
+    default: |-
+      -e
+      -x
+      -c
+  main-run:
+    description: >
+      Can be used to inline a shell script with the default `main-args` for
+      `main-command`. Technically the last argument to `main-command`.
+    required: false
+    default: ""
+
+  post-command:
+    description: "Name or path to an executable to be run at the end of a job."
+    required: true
+    default: "sh"
+  post-args:
+    description: "Arguments for `post-command`. One per line."
+    required: true
+    default: |-
+      -e
+      -x
+      -c
+  post-run:
+    description: >
+      Can be used to inline a shell script with the default `post-args` for
+      `post-command`. Technically the last argument to `post-command`.
+    required: true
+    default: ""
+  pre-if:
+    description: "Whether to trigger the post-hook."
+    required: true
+    default: "false"
+
+outputs:
+  return-code:
+    description: "Return code of `main-command`."
+runs:
+  using: "node16"
+  pre: "dist/pre/index.js"
+  pre-if: "{{ fromJSON(env.INPUT_PRE-IF || 'false') }}"
+  main: "dist/main/index.js"
+  post: "dist/post/index.js"
+  post-if: "{{ fromJSON(env.INPUT_POST-IF || 'false') }}"

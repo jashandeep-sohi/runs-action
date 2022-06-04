@@ -1,0 +1,25 @@
+{
+  "name": "runs-action",
+  "version": "1.0.0",
+  "description": "Run a command at pre, main or post stages of a workflow job",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "rm -rf dist/ && ncc build pre.js -o dist/pre && ncc build main.js -o dist/main && ncc build post.js -o dist/post && git add -A dist/"
+  },
+  "keywords": [
+    "github-actions"
+  ],
+  "author": "Jashandeep Sohi <jashandeep.s.sohi@gmail.com>",
+  "license": "GPLv3",
+  "dependencies": {
+    "@actions/core": "^1.8.2",
+    "@actions/exec": "^1.1.1"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "dist"
+  ]
+}
