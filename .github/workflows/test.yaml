@@ -1,0 +1,49 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./
+        name: Test pre & post
+        with:
+          pre-run: echo Hello from pre run
+          pre-if: "true"
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+          post-if: "true"
+
+      - uses: ./
+        name: Test pre only
+        with:
+          pre-run: echo Hello from pre run
+          pre-if: "true"
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+          post-if: "false"
+
+      - uses: ./
+        name: Test post only
+        with:
+          pre-run: echo Hello from pre run
+          pre-if: "false"
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+          post-if: "true"
+
+      - uses: ./
+        name: Test main only
+        with:
+          pre-run: echo Hello from pre run
+          pre-if: "false"
+          main-run: echo Hello from main run
+          post-run: echo Hello from post run
+          post-if: "false"
