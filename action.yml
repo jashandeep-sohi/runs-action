@@ -70,7 +70,7 @@ outputs:
 runs:
   using: "node16"
   pre: "dist/pre/index.js"
-  pre-if: "{{ fromJSON(env.INPUT_PRE_IF || 'false') }}"
+  pre-if: "fromJSON(env.INPUT_PRE_IF || 'false')"
   main: "dist/main/index.js"
   post: "dist/post/index.js"
-  post-if: "{{ fromJSON(env.INPUT_POST_IF || 'false') }}"
+  post-if: "fromJSON(env.INPUT_POST_IF || 'false')"
