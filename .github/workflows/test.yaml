@@ -58,3 +58,25 @@ jobs:
           pre-run: echo Hello from pre run
           main-run: echo Hello from main run
           post-run: echo Hello from post run
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test custom commands
+        env:
+          PRE_IF: "true"
+          POST_IF: "true"
+        with:
+          pre-command: ls
+          pre-args: |
+            -l
+            -h
+            -a
+          main-command: ls
+          main-args: |
+            -l
+            -h
+            -a
+          post-command: ls
+          post-args: |
+            -l
+            -h
+            -a
