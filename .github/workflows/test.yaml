@@ -80,3 +80,6 @@ jobs:
             -l
             -h
             -a
+
+      - name: Something else
+        run: echo Blha blha blha
