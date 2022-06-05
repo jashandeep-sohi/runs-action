@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Something else
+        run: echo Blha blha blha
+        
       - uses: jashandeep-sohi/runs-action@master
         name: Test pre & post
         env:
