@@ -21,5 +21,5 @@ try {
   if (retCode !== 0)
     core.setFailed(`${mainCommand} failed with exit code ${retCode}`)
 } catch (error) {
-  core.setFailed(`{error}`)
+  core.setFailed(`${error}`)
 }

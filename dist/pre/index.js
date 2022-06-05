@@ -3242,7 +3242,7 @@ try {
     }
   )
 } catch (error) {
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`{error}`)
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`${error}`)
 }
 
 __webpack_handle_async_dependencies__();
