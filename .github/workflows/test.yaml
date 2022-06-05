@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Something else
         run: echo Blha blha blha
-        
+
       - uses: jashandeep-sohi/runs-action@master
         name: Test pre & post
         env:
@@ -83,6 +83,17 @@ jobs:
             -l
             -h
             -a
+
+      - uses: jashandeep-sohi/runs-action@master
+        name: Test error
+        continue-on-error: true
+        env:
+          PRE_IF: "true"
+          POST_IF: "true"
+        with:
+          pre-run: exit 1
+          main-run: exit 1
+          post-run: exit 1
 
       - name: Something else
         run: echo Blha blha blha
